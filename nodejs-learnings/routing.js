@@ -12,13 +12,10 @@ const server = http.createServer((req, res) => {
     res.end("This is Node js session");
   } else if (pathName === "/fruits") {
     fs.readFile("./data/fruits_data.json", "utf-8", (err, data) => {
-      // converting string data to JSON
-      const jsonData = JSON.parse(data);
       res.writeHead(200, {
         "Content-Type": "application/json",
       });
       res.end(data);
-      //res.end(jsonData); // the res.end expects string, will throw error
     });
   } else {
     // header is mechanism to provide information about
