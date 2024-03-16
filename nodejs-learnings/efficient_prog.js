@@ -2,11 +2,7 @@ const http = require("http");
 const fs = require("fs");
 
 const fileData = fs.readFileSync("./data/fruits_data.json", "utf-8");
-const jsonData = JSON.parse(fileData);
 
-const printAFruit = (fruit) => {
-  console.log(`printing fruit - ${JSON.stringify(fruit)}`);
-};
 
 // creating server
 const server = http.createServer((req, res) => {
@@ -17,7 +13,6 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, {
       "Content-Type": "application/json",
     });
-    jsonData.map((fruit) => printAFruit(fruit));
     res.end(fileData);
   } else {
     // header is mechanism to provide information about

@@ -2,29 +2,38 @@ const http = require("http");
 const fs = require("fs");
 const url = require("url");
 
-const fileData = fs.readFileSync("./data/fruits_data.json", "utf-8");
-
+const file_content = fs.readFileSync("./data/fruits_data.json", "utf-8");
+const fruits_json_data = JSON.parse(file_content)
 
 // creating server
 const server = http.createServer((req, res) => {
-  const parsedURL = url.parse(req.url, true);
-  const pathname = parsedURL.pathname;
-  const path = parsedURL.path
-  const query = parsedURL.query
-  //console.log("parsedURL is ", parsedURL);
 
+  const { pathname, path, query } = url.parse(req.url, true);
   console.log(
-    `The url props are - pathname is ${pathname} and path is ${path} and query is ${JSON.stringify(query)}`
+    `The url props are - pathName is ${pathname} and path is ${path}, and query is ${JSON.stringify(
+      query
+    )}`
   );
-
 
   if (pathname === "/fruits") {
     res.writeHead(200, {
       "Content-Type": "application/json",
     });
 
+    console.log(`query is ${JSON.stringify(query)}`)
+    console.log(`query.id is ${query.id}`)
 
-    res.end(fileData);
+    if (query == undefined || query.id == undefined) {
+      res.end(file_content);
+    } else {
+      const fruit = fruits_json_data[query.id]
+      if (fruit == undefined) {
+        res.end(`No fruits found for id ${query.id}`)
+      } else {
+        res.end(JSON.stringify(fruit));
+      }
+    }
+
   } else {
     // header is mechanism to provide information about
     // response to client or browser

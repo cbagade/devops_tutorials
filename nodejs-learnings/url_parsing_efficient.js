@@ -4,19 +4,15 @@ const url = require("url");
 
 const fileData = fs.readFileSync("./data/fruits_data.json", "utf-8");
 
-
 // creating server
 const server = http.createServer((req, res) => {
-  const parsedURL = url.parse(req.url, true);
-  const pathname = parsedURL.pathname;
-  const path = parsedURL.path
-  const query = parsedURL.query
-  //console.log("parsedURL is ", parsedURL);
 
+  const { pathname, path, query } = url.parse(req.url, true);
   console.log(
-    `The url props are - pathname is ${pathname} and path is ${path} and query is ${JSON.stringify(query)}`
+    `The url props are - pathName is ${pathname} and path is ${path}, and query is ${JSON.stringify(
+      query
+    )}`
   );
-
 
   if (pathname === "/fruits") {
     res.writeHead(200, {

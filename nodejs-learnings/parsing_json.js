@@ -1,28 +1,25 @@
 const http = require("http");
 const fs = require("fs");
-const url = require("url");
 
 const fileData = fs.readFileSync("./data/fruits_data.json", "utf-8");
+// conversion of string to JSON
+const jsonData = JSON.parse(fileData);
 
 
 // creating server
 const server = http.createServer((req, res) => {
-  const parsedURL = url.parse(req.url, true);
-  const pathname = parsedURL.pathname;
-  const path = parsedURL.path
-  const query = parsedURL.query
-  //console.log("parsedURL is ", parsedURL);
+  const pathName = req.url;
+  console.log("pathName is ", pathName);
 
-  console.log(
-    `The url props are - pathname is ${pathname} and path is ${path} and query is ${JSON.stringify(query)}`
-  );
-
-
-  if (pathname === "/fruits") {
+  if (pathName === "/fruits") {
     res.writeHead(200, {
       "Content-Type": "application/json",
     });
 
+    jsonData.map((fruit) => {
+      // conversion of JSON to string, since input to console.log , can only be string
+      console.log(`printing fruit - ${JSON.stringify(fruit)}`);
+    });
 
     res.end(fileData);
   } else {
@@ -39,7 +36,5 @@ const server = http.createServer((req, res) => {
 // listening to incoming request
 server.listen(3000, "127.0.0.1", () => {
   console.log("Server listening to request on port 3000");
-  console.log(
-    "Hit http://localhost:3000/fruits"
-  );
+  console.log("Hit http://localhost:3000/fruits on browser");
 });
