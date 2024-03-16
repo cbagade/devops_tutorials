@@ -16,9 +16,9 @@ const server = http.createServer((req, res) => {
       "Content-Type": "application/json",
     });
 
-    jsonData.map((fruit) => {
+    jsonData.map((one_fruit) => {
       // conversion of JSON to string, since input to console.log , can only be string
-      console.log(`printing fruit - ${JSON.stringify(fruit)}`);
+      console.log(`printing fruit - ${JSON.stringify(one_fruit)}`);
     });
 
     res.end(fileData);
