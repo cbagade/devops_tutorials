@@ -23,10 +23,6 @@ const write_file_promise = (file, file_content) => {
 
 }
 
-function sample(){
-
-    console.log('anything sample')
-}
 
 const complete_process = async() => {
     
@@ -36,8 +32,6 @@ const complete_process = async() => {
 
     return "file written"
 }
-
-
 
 
 
