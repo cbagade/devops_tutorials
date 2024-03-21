@@ -1,0 +1,27 @@
+//http://localhost:3000/cafe/menu
+//http://localhost:3000/cafe/menu?short_name=asam_tea
+//http://localhost:3000/cafe/menu?category=beverages
+
+[
+    {
+        "id":0,
+        "item_name":"Cafechinu Cofee",
+        "short_name":"caf_cofee",
+        "speciality":"",
+        "category":"beverages",
+        "price":10.62
+
+    },
+    {
+        "id":2,
+        "item_name":"Asam Tea",
+        "short_name":"asam_team",
+        "speciality":"xyz",
+        "category":"beverages",
+        "price":30
+
+    },
+    {
+
+    }
+]
