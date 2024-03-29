@@ -17,7 +17,7 @@ console.log(`DB is ${DB}`);
 // and all other fields will not be saved (if some other fields are sent).
 mongoose.set("strictQuery", true);
 mongoose.connect(DB).then((con) => {
-  console.log(con.connection);
+  //console.log(con.connection);
   console.log("connection successfull");
 });
 
@@ -53,11 +53,12 @@ const testFruit = new FruitModel({
 });
 
 // finally save to DB
-testFruit.save().then(doc => {
-  console.log(`doc saved ${doc}`);
-}).catch(err => {
-  console.log(`error ${err}`);
-});
+(async() =>{
+
+    const doc = await testFruit.save()
+    console.log(`doc saved is ${doc}`)
+
+})();
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {

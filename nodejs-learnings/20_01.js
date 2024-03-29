@@ -27,11 +27,15 @@ const write_file_promise = (file, file_content) => {
 const complete_process = async() => {
     
     const dog_breed =   await read_file_promise('./promise_demo/dog_1.txt')
+
+    console.log(`complete_process() ::: ${dog_breed}`)
     const res = await superagent.get(`https://dog.ceo/api/breed/${dog_breed}/images/random`)
     await write_file_promise('./new_file.txt',res.body.message)
 
     return "file written"
 }
+
+
 
 
 
