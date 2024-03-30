@@ -5,20 +5,14 @@ const Fruit = require("./../models/fruit_model");
 
 dotenv.config({ path: "./../config.env" });
 
-const DB = process.env.DATABASE.replace(
-  "<PASSWORD>",
-  process.env.DATABASE_PASSWORD
-);
+const DB = process.env.DATABASE;
 
-mongoose.set("strictQuery", true);
-mongoose
-  .connect(DB, {
-    useNewUrlParser: true,
-  })
-  .then((con) => {
-    console.log(con.connections);
-    console.log("Conection successfull");
-  });
+(
+  async() => {
+    await mongoose.connect(DB)
+  }
+)();
+
 
 const fruits = JSON.parse(fs.readFileSync("./fruits_data.json", "utf-8"));
 
