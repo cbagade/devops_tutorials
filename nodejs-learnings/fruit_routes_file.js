@@ -2,8 +2,6 @@ const express = require('express')
 const fruit_controller= require("./fruit_contorller_file")
 
 
-
-
 ///////////////// ROUTES  ////////////////////////
 
 const fruit_router = express.Router()

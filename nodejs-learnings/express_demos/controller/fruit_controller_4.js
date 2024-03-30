@@ -61,7 +61,7 @@ exports.patchFruit = async (req, res) => {
     console.log('called patch fruit ', req.body);
     const fruit = await Fruit.findByIdAndUpdate(req.params.id, req.body, {
       new: true, // new updated doc will be return
-      runValidators: true
+      runValidators: true // will run validators
     });
     res.status(200).json({ status: 'success', data: { fruit } });
   } catch (err) {
