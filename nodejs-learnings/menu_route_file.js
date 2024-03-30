@@ -1,21 +1,11 @@
 const express = require('express')
+const menu_controller= require("./menu_contorller_file")
 
 
-///////////////// MENU  ////////////////////////
 
-const get_menu = (req,res) =>{
-    res.send('assignment - need to be implemented')
-}
 
-const get_a_menu_item = (req,res) =>{
-    res.send('assignment - need to be implemented')
-}
 
-const create_a_menu_item = (req,res) =>{
-    res.send('assignment - need to be implemented')
-}
 
-///////////////// MENU  ////////////////////////
 
 ///////////////// ROUTES  ////////////////////////
 
@@ -23,8 +13,7 @@ const create_a_menu_item = (req,res) =>{
 const cafe_router = express.Router()
 
 
-cafe_router.route('/').get(get_menu).post(create_a_menu_item)
-cafe_router.route(':name').get(get_a_menu_item)
+cafe_router.route('/').get(menu_controller.get_menu).post(menu_controller.create_a_menu_item)
+cafe_router.route(':name').get(menu_controller.get_a_menu_item)
 
 module.exports = cafe_router
-
