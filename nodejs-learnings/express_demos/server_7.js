@@ -14,10 +14,12 @@ console.log(`DB is ${DB}`);
 // fields that are specified in your schema will be saved in the database, 
 // and all other fields will not be saved (if some other fields are sent).
 mongoose.set('strictQuery', true);
-mongoose.connect(DB).then(con =>{
-  console.log(con.connection);
-  console.log('connection successfull');
-});
+(
+  async() =>{
+    const con = await mongoose.connect(DB)
+    console.log(con.connection)
+  }
+)();
 
 
 
