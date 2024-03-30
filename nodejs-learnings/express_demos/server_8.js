@@ -6,10 +6,7 @@ const app = require("./app_14");
 
 console.log(app.get("env")); // env is aleays development unless you do export NODE_ENV=dev
 
-const DB = process.env.DATABASE.replace(
-  "<PASSWORD>",
-  process.env.DATABASE_PASSWORD
-);
+const DB = process.env.DATABASE
 console.log(`DB is ${DB}`);
 
 // When the strict option is set to true, Mongoose will ensure that only the
