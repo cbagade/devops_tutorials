@@ -10,10 +10,7 @@ const DB = process.env.DATABASE.replace('<PASSWORD>', process.env.DATABASE_PASSW
 console.log(`DB is ${DB}`);
 
 
-// When the strict option is set to true, Mongoose will ensure that only the 
-// fields that are specified in your schema will be saved in the database, 
-// and all other fields will not be saved (if some other fields are sent).
-mongoose.set('strictQuery', true);
+
 (
   async() =>{
     const con = await mongoose.connect(DB)

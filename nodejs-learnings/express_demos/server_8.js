@@ -15,11 +15,13 @@ console.log(`DB is ${DB}`);
 // When the strict option is set to true, Mongoose will ensure that only the
 // fields that are specified in your schema will be saved in the database,
 // and all other fields will not be saved (if some other fields are sent).
-mongoose.set("strictQuery", true);
-mongoose.connect(DB).then((con) => {
-  //console.log(con.connection);
-  console.log("connection successfull");
-});
+
+(
+  async() =>{
+    await mongoose.connect(DB)
+  }
+)();
+
 
 // Schema for fruits
 
@@ -36,7 +38,7 @@ const fruitSchema = new mongoose.Schema({
     required: [true, "price of fruit is required"],
   },
   organic: Boolean,
-  description: String,
+  description: String
 });
 
 // convention is to start with Caps
@@ -44,7 +46,7 @@ const FruitModel = mongoose.model('Fruit', fruitSchema);
 
 // Now create object out of model above
 const testFruit = new FruitModel({
-  fruitName: 'Test Fruit',
+  fruitName: 'orange',
   from: 'Nagpur',
   nutrients: 'Vitamin C',
   price: 100,
