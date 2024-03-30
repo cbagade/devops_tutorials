@@ -18,9 +18,21 @@ exports.getAllFruits = async (req, res) => {
 };
 
 // lists a fruit, with specified id
-exports.getAFruit = async (req, res) => {
+exports.getAFruitByID = async (req, res) => {
   const fruit = await Fruit.findById(req.params.id);
+  try {
+    res.status(200).json({ status: "success", data: { fruit } });
+  } catch (err) {
+    res.status(400).json({
+      status: "fail",
+      message: err.message,
+    });
+  }
+};
 
+// lists a fruit, with specified id
+exports.getAFruitByName = async (req, res) => {
+  const fruit = await Fruit.findOne({fruitName:req.params.name});
   try {
     res.status(200).json({ status: "success", data: { fruit } });
   } catch (err) {
@@ -48,6 +60,19 @@ exports.patchFruit = async (req, res) => {
   try {
     console.log('called patch fruit ', req.body);
     const fruit = await Fruit.findByIdAndUpdate(req.params.id, req.body, {
+      new: true, // new updated doc will be return
+      runValidators: true
+    });
+    res.status(200).json({ status: 'success', data: { fruit } });
+  } catch (err) {
+    res.status(400).json({ status: 'fail', message: err.message });
+  }
+};
+
+exports.patchFruitByName = async (req, res) => {
+  try {
+    console.log('called patch fruit ', req.body);
+    const fruit = await Fruit.findOneAndUpdate({fruitName:req.params.name}, req.body, {
       new: true, // new updated doc will be return
       runValidators: true
     });

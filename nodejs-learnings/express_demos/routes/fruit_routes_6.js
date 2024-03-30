@@ -14,6 +14,7 @@ const router = express.Router();
  */
 
 router.route("/").get(controller.getAllFruits).post(controller.createFruit);
-router.route("/:id").get(controller.getAFruit).patch(controller.patchFruit).delete(controller.deleteFruit);
+router.route("/:id").get(controller.getAFruitByID).patch(controller.patchFruit).delete(controller.deleteFruit);
+router.route("/fruit_name/:name").get(controller.getAFruitByName).patch(controller.patchFruitByName)
 
 module.exports = router;

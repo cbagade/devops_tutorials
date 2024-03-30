@@ -6,20 +6,16 @@ const app = require("./app_15");
 
 console.log(app.get("env")); // env is aleays development unless you do export NODE_ENV=dev
 
-const DB = process.env.DATABASE.replace(
-  "<PASSWORD>",
-  process.env.DATABASE_PASSWORD
-);
+const DB = process.env.DATABASE
 console.log(`DB is ${DB}`);
 
-// When the strict option is set to true, Mongoose will ensure that only the
-// fields that are specified in your schema will be saved in the database,
-// and all other fields will not be saved (if some other fields are sent).
-mongoose.set("strictQuery", true);
-mongoose.connect(DB).then((con) => {
-  console.log(con.connection);
-  console.log("connection successfull");
-});
+(
+  async() =>{
+    await mongoose.connect(DB)
+  }
+)();
+
+
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
