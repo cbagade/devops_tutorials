@@ -1,38 +1,39 @@
-
 const fs = require("fs")
-const fruits = fs.readFileSync('./data/fruits_data.json','utf-8')
-const fruit_json = JSON.parse(fruits)
+const Fruit = require('./express_demos/models/fruit_model')
 
-exports.get_all_fruits = (req,res)=>{
+//const fruits = fs.readFileSync('./data/fruits_data.json','utf-8')
+//const fruit_json = JSON.parse(fruits)
+
+
+exports.get_all_fruits = async(req,res)=>{
     console.log('I am coming from method')
-    res.status(200).json({message:'success', fruits:JSON.stringify(fruit_json)})
+    const all_fruits = await Fruit.find()
+    res.status(200).json({message:'success', fruits:all_fruits})
+}
+ 
+exports.get_a_fruit = async(req,res) =>{
+    console.log('I am coming from method')
+    const id = req.params.id
+    //const fruit = fruit_json[id]
+    const one_fruit = await Fruit.findById(id)
+    res.status(200).json({ status: "success", data: { one_fruit } });
 }
 
-exports.get_a_fruit = (req,res) =>{
-    console.log('I am coming from method')
-    const id = req.params.id * 1
-    const fruit = fruit_json[id]
-    res.status(200).json({message:'success', fruit: JSON.stringify(fruit)})
-}
 
-
-exports.create_a_fruit = (req,res) =>{
+exports.create_a_fruit = async (req,res) =>{
     const fruit = req.body
     console.log(`fruit ${fruit}`)
-    const new_id = fruit_json[fruit_json.length - 1].id + 1
-    const new_fruit = Object.assign({id:new_id}, fruit)
-    fruit_json.push(new_fruit)
-    console.log(`new fruits is is ${JSON.stringify(fruit_json)}`)
-    fs.writeFile('./data/fruits_data.json',JSON.stringify(fruit_json),'utf-8',err=>{
-        res.status(200).send(`new fruits created with id ${new_id}`)
-    })
+
+    const new_fruit = Fruit.create(req.body)
+    res.status(200).json({ status: "success", data: { new_fruit } });
+    
 }
 
 exports.validateid = (req,res,next) => {
-    const id = req.params.id * 1
-    if(id>=fruit_json.length){
-        return res.status(400).send("invalid id")
-    }
+//    const id = req.params.id * 1
+  //  if(id>=fruit_json.length){
+    //    return res.status(400).send("invalid id")
+   // }
     next()
 
 }
