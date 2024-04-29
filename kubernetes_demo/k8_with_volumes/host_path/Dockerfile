@@ -21,6 +21,6 @@ EXPOSE 3000
 CMD [ "node", "server.js" ]
 
 
-# docker build -t cbagade/kube-data-ichostvol:v5 .
-# docker push cbagade/kube-data-ichostvol:v5
+# docker build -t cbagade/kube-data-ichostvol:v1.1 .
+# docker push cbagade/kube-data-ichostvol:v1.1
 

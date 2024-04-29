@@ -2,7 +2,7 @@ apiVersion: apps/v1
 # ReplicaSet is k8 artifact or k8 object
 kind: ReplicaSet
 metadata:
-  # name of RC
+  # name of RS
   name: first-app-rs
   labels:
     # another label
@@ -34,7 +34,10 @@ spec:
 # kubectl apply -f replica_set.yaml
 # kubectl get replicaset (or rs)
 # kubectl get pods
+# now try to create pod by pod.yaml (ensure label is same)
+# since replica is 3, it will delete that pod immediately (rs also takes account of pods which are not created via rs but got matching labels)
 # kubectl delete -f replica_set.yaml
-
-
-
+# again
+# kubectl apply -f pod.yaml
+# kubectl apply -f replica_set.yaml
+# total count will be 3

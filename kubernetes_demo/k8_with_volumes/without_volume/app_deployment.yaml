@@ -25,7 +25,7 @@ spec:
     # port number to access on the pods targeted by the service (mapped to application)
     targetPort: 3000
     # to allow traffic inside kinD cluster
-    nodePort: 30001
+    nodePort: 30010
   # type of service
   type: NodePort
 ---
@@ -73,12 +73,12 @@ spec:
 
 
 # kubectl apply -f app_deployment.yaml
-# GET app_2/api/v1/fruits change port to 30001  -- should give error for file not exist
-# POST  app_2/api/v1/fruits change port to 30001
+# GET app_2/api/v1/fruits change port to 30010  -- should give error for file not exist
+# POST  app_2/api/v1/fruits change port to 30010
 # Verify the changes
-# GET  app_2/api/v1/fruits change port to 30001
-# GET  app_2/api/v1/fruits/error change port to 30001
+# GET  app_2/api/v1/fruits change port to 30010
+# GET  app_2/api/v1/fruits/error change port to 30010
 # This action will put container in error state and restart (pod is not restarted)
-# GET app_2/api/v1/fruits change port to 30001
+# GET app_2/api/v1/fruits change port to 30010
 # changes are lost, when container restart
 # also pod restart won't have changes

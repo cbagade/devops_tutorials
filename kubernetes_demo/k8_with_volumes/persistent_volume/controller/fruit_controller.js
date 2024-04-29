@@ -34,6 +34,9 @@ exports.createFruit = (req, res) => {
   fruits.push(newFruit);
 
   // also update our file of fruits
+  fs.rmSync(filePath, {
+    force: true,
+  });  
   fs.appendFile(filePath, JSON.stringify(fruits) + "\n", (err) => {
     if (err) {
       return res.status(500).json({ message: 'Storing the text failed', error: err });

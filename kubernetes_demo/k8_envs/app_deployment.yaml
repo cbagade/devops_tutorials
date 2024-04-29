@@ -39,17 +39,6 @@ spec:
     requests:
       storage: 1Gi
 ---
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: data-store-env
-# the data to be passed as evn variables
-data:
-  # key: value
-  # can have lot manys
-  folder: 'userchanges_1'
-  port: '3000'
----
 # what service should have - the deployment which it want to expose, the port of pod and  port at which
 # application is running
 # pl refer https://kubernetes.io/docs/reference/kubernetes-api/service-resources/service-v1/
@@ -125,7 +114,7 @@ spec:
               key: folder
               # process.env.port in app.js
         - name: PORT
-          # value: 'userchanges'
+          # value: '3000'
           # now access from config map
           valueFrom:
             configMapKeyRef:
@@ -159,21 +148,10 @@ spec:
 
 
 # since the host path is used, can do docker exec -it <kind_node> /bin/bash and clear /data directory on node
+# kubectl apply -f app_cm.yaml
 # kubectl apply -f app_deployment.yaml
 # kubectl get pv --> status is Bound
 # kubectl get pvc --> status is Bound
 
 # GET app_2/api/v1/fruits change port to 30001
 # POST  app_2/api/v1/fruits change port to 30001
-# Verify the changes
-# GET  app_2/api/v1/fruits change port to 30001
-# GET  app_2/api/v1/fruits/error change port to 30001
-# This action will put container in error state and restart (pod is not restarted)
-# GET app_2/api/v1/fruits change port to 30001
-# changes are available, so hostPath can survice container restart
-# kubectl delete -f app_deployment.yaml
-# kubectl apply -f app_deployment.yaml
-# GET app_2/api/v1/fruits change port to 30001
-# changes are lost, so hostPath can survive pod restart
-
-

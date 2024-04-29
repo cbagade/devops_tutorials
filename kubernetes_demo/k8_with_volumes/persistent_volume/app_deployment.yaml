@@ -25,7 +25,7 @@ spec:
     # port number to access on the pods targeted by the service (mapped to application)
     targetPort: 3000
     # to allow traffic inside kinD cluster
-    nodePort: 30001
+    nodePort: 30010
   # type of service
   type: NodePort
 ---
@@ -61,7 +61,7 @@ spec:
       # container name inside pod and image
       - name: second-app-container
         # you need to create this image and push to registry
-        image: cbagade/kube-data-pvvolic:v5
+        image: cbagade/kube-data-pvvol:v5.1
         # after setting vol at pod, we need to mount that on container on specific path
         # this application is already have story folder, which will be inside app folder (see Dockerfile)
         # so that text file will be available onto pod now, over volume
@@ -96,17 +96,17 @@ spec:
 # kubectl get pv --> status is Bound
 # kubectl get pvc --> status is Bound
 
-# GET app_2/api/v1/fruits change port to 30001
-# POST  app_2/api/v1/fruits change port to 30001
+# GET app_2/api/v1/fruits change port to 30010
+# POST  app_2/api/v1/fruits change port to 30010
 # Verify the changes
-# GET  app_2/api/v1/fruits change port to 30001
-# GET  app_2/api/v1/fruits/error change port to 30001
+# GET  app_2/api/v1/fruits change port to 30010
+# GET  app_2/api/v1/fruits/error change port to 30010
 # This action will put container in error state and restart (pod is not restarted)
-# GET app_2/api/v1/fruits change port to 30001
+# GET app_2/api/v1/fruits change port to 30010
 # changes are available, so hostPath can survice container restart
 # kubectl delete -f app_deployment.yaml
 # kubectl apply -f app_deployment.yaml
-# GET app_2/api/v1/fruits change port to 30001
+# GET app_2/api/v1/fruits change port to 30010
 # changes are lost, so pv/pvc can survive pod restart
 
 

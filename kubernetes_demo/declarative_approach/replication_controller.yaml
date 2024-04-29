@@ -6,7 +6,7 @@ metadata:
   name: first-app-rc
   labels:
     # another label
-    type: front-end
+    type: label-of-rc
 spec:
   # template of pod to be created
   template:
@@ -30,6 +30,6 @@ spec:
 # kubectl apply -f replication_controller.yaml
 # kubectl get replicationcontroller
 # kubectl get pods
-
-
-
+# the label of pod is selector because its define inline (for rs , its explicit)
+# kubectl describe rc <rc_name>  and observe labels
+# kubectl describe pod <pod_name> and observe labels

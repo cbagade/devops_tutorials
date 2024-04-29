@@ -10,7 +10,7 @@ metadata:
   # labels on pod
   labels:
     app: second-app
-    tier: backend  
+    tier: front-end
 spec:
   # container specification. Pod will have container inside
   containers:
@@ -21,7 +21,8 @@ spec:
     # Policy for pulling image 
     # Always pulled from image-registry
     # IfNotPresent - Only pulled when not present locally
-    # Never - Get only locally and if some issue with image, the container startup failed
+    # Never - Get only locally (inside nodes) and if some issue with image, the container startup failed
+    # Images inside Nodes are listed with crictl cli
     imagePullPolicy: Always
     ports:
       # container port (app will be exposed at 3000)
@@ -33,4 +34,6 @@ spec:
 # kubectl exec -it second-app-pod -- /bin/bash
 # inside pod
 # curl http://localhost:3000
+# also outside pod, see labels by executing following command
+# kubectl describe pod <pod_name>
 # kubectl delete -f pod.yaml

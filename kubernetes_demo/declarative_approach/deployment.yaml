@@ -51,3 +51,6 @@ spec:
 # kubectl get pods
 # kubectl describe pod <pod_name>
 # watch out labels of pods
+# kubectl delete -f deployment.yaml
+# To get the yaml without running command
+# kubectl create deployment --image=cbagade/kubd-first-app:v5 app-dep --dry-run=client -o yaml

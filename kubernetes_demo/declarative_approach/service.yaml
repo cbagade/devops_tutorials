@@ -25,13 +25,16 @@ spec:
       # port number to access on the pods targeted by the service (mapped to application)
       targetPort: 3000
       # to allow traffic inside kinD cluster
-      nodePort: 30001
+      nodePort: 30010
   # type of service
   type: NodePort
 
-  # try to access curl http://localhost:30001 -> Not accessible
+  # kubectl create -f deployment.yaml
+  # try to access curl http://localhost:30010 -> Not accessible
   # kubectl apply -f service.yaml
-  # curl http://localhost:30001
+  # curl http://localhost:30010
+  # can also be accessed by node ip
+  # kubectl get nodes -o wide
+  # curl http://<worker_node_ip>:30010
   # kubectl delete -f deployment.yaml
   # kubectl delete -f service.yaml
-

@@ -25,7 +25,7 @@ spec:
     # port number to access on the pods targeted by the service (mapped to application)
     targetPort: 3000
     # to allow traffic inside kinD cluster
-    nodePort: 30001
+    nodePort: 30010
   # type of service
   type: NodePort
 ---
@@ -86,7 +86,10 @@ spec:
 
 
 # kubectl apply -f app_deployment_liveness.yaml
-# curl http://localhost:30001/error
+# curl http://localhost:30010/error
+#(((( can also be accessed by node ip
+# kubectl get nodes -o wide
+# curl http://<worker_node_ip>:30010 )))))
 # then observe pod coming in running state and also observe restart count
 # hit curl error request multiple times
 # kubectl delete -f app_deployment_liveness.yaml

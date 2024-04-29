@@ -94,6 +94,7 @@ CMD [ "node", "app.js" ]
 # curl http://localhost:30001/error
 # observe pod going from error to running to error
 # the pods to running will go due to Deployment, it will try to bring up the pod
+# while(true); do   curl  "localhost:30001"; done
 # curl http://localhost:30001/
 # this will ensure pod in running state
 

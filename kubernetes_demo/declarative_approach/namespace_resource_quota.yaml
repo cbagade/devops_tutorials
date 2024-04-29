@@ -15,3 +15,4 @@ spec:
 
 
 # kubectl create -f namespace_resource_quota.yaml
+# kubectl describe namespace kube-learnings 

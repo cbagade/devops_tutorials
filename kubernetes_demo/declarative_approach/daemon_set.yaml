@@ -30,9 +30,8 @@ spec:
 
 
 # kubectl apply -f daemon_set.yaml
-# kubectl get replicaset (or rs)
 # kubectl get pods
-# kubectl delete -f replica_set.yaml
+# kubectl delete -f daemon_set.yaml
 
 
 
