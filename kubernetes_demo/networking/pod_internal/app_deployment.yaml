@@ -49,6 +49,6 @@ spec:
 # kubectl logs <pod>  -> will show containers
 # kubectl logs <pod> -c users -f
 # kubectl logs <pod> -c auth -f --> on other terminal
-# POST signup - http://localhost:30004/signup -> {     "email":"cbagade@yahoo.com",     "password":"devops" }
-# http://localhost:30004/login -> {     "email":"cbagade@yahoo.com",     "password":"devops" }
+# POST signup - http://localhost:30005/signup -> {     "email":"cbagade@yahoo.com",     "password":"devops" }
+# http://localhost:30005/login -> {     "email":"cbagade@yahoo.com",     "password":"devops" }
 # kubectl delete -f app_deployment.yaml

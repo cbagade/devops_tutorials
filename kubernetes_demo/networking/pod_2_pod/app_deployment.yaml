@@ -82,3 +82,4 @@ spec:
 # kubectl logs <pod> -f --> for both auth and users pod
 # http://localhost:30004/signup -> {     "email":"cbagade@yahoo.com",     "password":"devops" }
 # http://localhost:30004/login -> {     "email":"cbagade@yahoo.com",     "password":"devops" }
+# kubectl delete -f app_deployment.yaml

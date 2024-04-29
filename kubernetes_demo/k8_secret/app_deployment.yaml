@@ -26,15 +26,6 @@ spec:
     targetPort: 8080
     nodePort: 30005
 ---
-apiVersion: v1
-kind: Secret
-metadata:
-  name: credsecret
-type: Opaque
-data:
-  email: Y2JhZ2FkZUB5YWhvby5jb20=
-  password: ZGV2b3Bz
----
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -93,11 +84,12 @@ spec:
 
 # same image as auth from pod_internal demo
 # cd user_api
-# docker build -t cbagade/kub-demo-users:latest .
-# docker push cbagade/kub-demo-users:latest
+# docker build -t cbagade/kub-demo-users-3:latest .
+# docker push cbagade/kub-demo-users-3:latest
 
+# kubectl apply -f app_secret.yaml
 # kubectl apply -f app_deployment.yaml
 
 # kubectl logs <pod> -f --> for both auth and users pod
-# http://localhost:30004/signup -> {     "email":"cbagade@yahoo.com",     "password":"devops" }
-# http://localhost:30004/login -> {     "email":"cbagade@yahoo.com",     "password":"devops" }
+# http://localhost:30005/signup -> No need for body as we taking from secret
+# http://localhost:30005/login -> No need for body as we taking from secret
