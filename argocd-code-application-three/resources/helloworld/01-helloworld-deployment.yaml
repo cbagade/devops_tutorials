@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: helloworld-ns
+  name: app-deployment
+# deployment specs, how the deployment should be configured
+spec:
+  # how many pods, default is 1, even 0 can be given
+  replicas: 3
+  # pods specs, which deployment should have
+  template:
+    # pods should be labelled with
+    # there is no need for kind: Pod  here as deployment will always have pod
+    metadata:
+      # pod should be labelled with
+      labels:
+        tier: backend
+    # how this pod should look like
+    spec:
+      containers:
+        # container name inside pod and image
+        - name: app-container
+          # you need to create this image and push to registry
+          image: cbagade/kub-first-app:v3
+          resources:
+            limits:
+              cpu: 50m
+              memory: 100Mi
+            requests:
+              cpu: 25m
+              memory: 50Mi
+  selector:
+    # the labels will be matched based on labels of pods
+    matchLabels:
+      tier: backend

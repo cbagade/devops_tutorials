@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeapp-deployment
+  namespace: nodeapp-ns
+  labels:
+    app: nodeapp-app
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: nodeapp-app
+  template:
+    metadata:
+      labels:
+        app: nodeapp-app
+    spec:
+      containers:
+      - name: nodeapp
+        image: cbagade/cont-i-img:v4
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+          requests:
+            cpu: 25m
+            memory: 50Mi
