@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+# ReplicaSet is k8 artifact or k8 object
+kind: ReplicaSet
+metadata:
+  # name of RS
+  name: first-app-rs
+  labels:
+    # another label
+    type: front-end
+spec:
+  # template of pod to be created
+  template:
+    # pod metadata section
+    metadata:
+      name: first-app
+      labels:
+        tier: front-end
+    # container specification
+    spec:
+      containers:
+      - name: kube-first-app
+        image: cbagade/kubd-first-app:v5
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 3000  
+  # number of pods to be created
+  replicas: 3
+  # pick pods from label
+  selector: 
+    matchLabels:
+      tier: front-end
+
+
+# kubectl apply -f replica_set.yaml
+# kubectl get replicaset (or rs)
+# kubectl get pods
+# now try to create pod by pod.yaml (ensure label is same)
+# since replica is 3, it will delete that pod immediately (rs also takes account of pods which are not created via rs but got matching labels)
+# kubectl delete -f replica_set.yaml
+# again
+# kubectl apply -f pod.yaml
+# kubectl apply -f replica_set.yaml
+# total count will be 3
