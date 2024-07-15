@@ -1,0 +1,2 @@
+mongo connection string is mongodb://chandra:chandra@mongodb:27017/fruits_db
+ * Debug mode: off
